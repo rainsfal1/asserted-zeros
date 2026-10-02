@@ -4,7 +4,7 @@ Code and data for **"Asserted Zeros: When a Valid Guarantee Certifies an
 Unmeasured Quantity"**, Zayyan Ahmed. NeurIPS 2026 Workshop on Reliable Agent
 Development (*Who Verifies the Agents?*), poster.
 
-[Paper on OpenReview](https://openreview.net/forum?id=TODO) · arXiv: *forthcoming*
+[Paper on OpenReview](https://openreview.net/forum?id=vAaj5fqMYR) · arXiv: *forthcoming*
 
 A distribution-free guarantee certifies whatever score it is handed, including
 one that was never measured. This repository holds the harnesses that produced
@@ -23,7 +23,8 @@ but **not** redistributed; see `LICENSE` for their terms.
   author    = {Ahmed, Zayyan},
   booktitle = {NeurIPS 2026 Workshop on Reliable Agent Development},
   year      = {2026},
-  note      = {Poster}
+  note      = {Poster},
+  url       = {https://openreview.net/forum?id=vAaj5fqMYR}
 }
 ```
 
