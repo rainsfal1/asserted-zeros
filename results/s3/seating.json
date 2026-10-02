@@ -1,0 +1,10 @@
+{
+  "result": "null",
+  "reason": "channel does not induce extraction errors (0/40 on WER>20% transcripts)",
+  "measured_seating": null,
+  "apriori_seating": {
+    "judge": "Qwen3-32B",
+    "evaluator": "Gemma-3-27B"
+  },
+  "expected": false
+}

@@ -1,0 +1,60 @@
+{
+ "per_file": [
+  {
+   "pool": "s3",
+   "tag": "judge",
+   "n_records": 609,
+   "replay_reproduces": 609,
+   "routes": {
+    "direct: writer (rounded at 5dp)": 973,
+    "counterfactual: writer alone": 973,
+    "direct: normalizer (spelling unmatched)": 30,
+    "counterfactual: normalizer alone": 77,
+    "direct: window (absent from top-20)": 9
+   }
+  },
+  {
+   "pool": "s3",
+   "tag": "evaluator",
+   "n_records": 710,
+   "replay_reproduces": 710,
+   "routes": {
+    "direct: writer (rounded at 5dp)": 1327,
+    "counterfactual: writer alone": 1327
+   }
+  },
+  {
+   "pool": "m3",
+   "tag": "judge",
+   "n_records": 1424,
+   "replay_reproduces": 1424,
+   "routes": {
+    "direct: writer (rounded at 5dp)": 2285,
+    "counterfactual: writer alone": 2285,
+    "counterfactual: normalizer alone": 179,
+    "direct: normalizer (spelling unmatched)": 67,
+    "direct: window (absent from top-20)": 22
+   }
+  },
+  {
+   "pool": "m3",
+   "tag": "evaluator",
+   "n_records": 1679,
+   "replay_reproduces": 1679,
+   "routes": {
+    "direct: writer (rounded at 5dp)": 3148,
+    "counterfactual: writer alone": 3148
+   }
+  }
+ ],
+ "direct": {
+  "direct: writer (rounded at 5dp)": 7733,
+  "direct: normalizer (spelling unmatched)": 97,
+  "direct: window (absent from top-20)": 31
+ },
+ "counterfactual": {
+  "counterfactual: writer alone": 7733,
+  "counterfactual: normalizer alone": 256
+ },
+ "n_zeros": 7861
+}

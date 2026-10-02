@@ -1,0 +1,53 @@
+{
+ "tag": "judge",
+ "transport": "vllm-offline",
+ "strata": {
+  "decile": {
+   "n": 299,
+   "V2_mass_ratio": {
+    "median": 1.0000000001942422,
+    "min": 0.9999989815449243,
+    "max": 1.0000015415360535,
+    "p99_abs_dev": 6.564829861943622e-07
+   },
+   "V3_score_ratio": {
+    "within_factor_2": 1.0,
+    "median": 0.9999999997916638,
+    "p05": 0.9381905380452931,
+    "p95": 1.0564385105335188
+   },
+   "V4_exact_zeros": 0,
+   "V1_candidate_miss_mass": {
+    "max": 1.913564527160615e-07,
+    "median": 1.2561161719643797e-08
+   }
+  },
+  "lowmass": {
+   "n": 48,
+   "V2_mass_ratio": {
+    "median": 1.000000043191472,
+    "min": 0.9999979308513037,
+    "max": 1.0000034924337655,
+    "p99_abs_dev": 3.492433765517333e-06
+   },
+   "V3_score_ratio": {
+    "within_factor_2": 1.0,
+    "median": 1.0000000061217889,
+    "p05": 0.9751536430484381,
+    "p95": 1.0423319896321448
+   },
+   "V4_exact_zeros": 0,
+   "V1_candidate_miss_mass": {
+    "max": 2.2718515044425353e-07,
+    "median": 1.0757980923105821e-07
+   }
+  }
+ },
+ "verdict": {
+  "V1_held": true,
+  "V2_held": true,
+  "V2_falsified": false,
+  "V3_held": true,
+  "V4_held": true
+ }
+}

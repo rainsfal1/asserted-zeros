@@ -1,0 +1,28 @@
+{
+ "n_records": 5236,
+ "n_slots": 15708,
+ "zeros_produced_by_rank_cut": {
+  "5": 3171,
+  "10": 617,
+  "20": 31,
+  "50": 0,
+  "100": 0
+ },
+ "committed_zeros_real_readout": 7861,
+ "binary_corpus_rank_bound": {
+  "judge": {
+   "n_ranks": 694,
+   "max": 4,
+   "beyond_20": 0
+  },
+  "evaluator": {
+   "n_ranks": 694,
+   "max": 4,
+   "beyond_20": 0
+  }
+ },
+ "verdict": {
+  "V6_falsified": true,
+  "reason": "a pure rank cut produces 31 of 7861 committed zeros at k=20 (and cannot reach the ~90% atom at any swept k); the endpoint structure comes from the writer, as the decomposition showed. The prereg's consequence clause -- rewrite \u00a75 to the rank-level result -- was executed in waves 9-10."
+ }
+}

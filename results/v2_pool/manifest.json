@@ -1,0 +1,30 @@
+{
+  "n_students": 350,
+  "students_hash_first": [
+    "21eaa11d-c2da-4051-9529-d170cf08372d",
+    "b7bc0826-a79d-42fd-aa13-c85a7b1c0fbd",
+    "f4d82caf-3562-4418-9669-940abff41ee3"
+  ],
+  "planned_records": 13992,
+  "already_done": 13992,
+  "empty_answers_excluded": [
+    "a8ffb1a7-6bff-486f-b2cd-d7f8b0ec0bda/8",
+    "efab0638-038d-493f-be95-1dda6e4c6134/6"
+  ],
+  "voices": {
+    "IN": "en-IN-PrabhatNeural",
+    "NG": "en-NG-EzinneNeural",
+    "PH": "en-PH-JamesNeural",
+    "ZA": "en-ZA-LeahNeural",
+    "KE": "en-KE-ChilembaNeural",
+    "SG": "en-SG-LunaNeural",
+    "HK": "en-HK-SamNeural",
+    "TZ": "en-TZ-ImaniNeural"
+  },
+  "draw_levels": [
+    "tel",
+    "snr0",
+    "snr_m5",
+    "snr_m10"
+  ]
+}

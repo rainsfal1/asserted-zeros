@@ -1,0 +1,411 @@
+# Lab instrument v1 (English) — 11 items over the pinned deployed scorer.
+#
+# WHAT IS PINNED (src/verdict_cert/scorer.py, transcribed from the deployed system —
+# do NOT change): 11 slots p01–p11, one construct per slot, options a/b/c, SCORE_MAP
+# (p09 = {a:2,b:2,c:0} two correct paths; p10 integrity, c disqualifying → hard block;
+# p11 reverse-keyed {c:2,a:1,b:0}), thresholds >=18 high / <=11 low.
+#
+# WHAT IS AUTHORED HERE: question wording + option semantics + the answer bank.
+# The deployed wording was never version-controlled (it lived in an external
+# voice-agent configuration) and the deployment's own audit documents the
+# original items as weak. Elicitation in deployment was open
+# conversation classified to a/b/c post-hoc — the lab mirrors that: the judge asks
+# conversationally, the respondent answers in free speech, the evaluator maps the
+# answer to a/b/c/unclear against this bank via constrained decoding.
+#
+# DESIGN THESIS: every item carries at least one *named* elicitation-failure
+# mechanism that the degraded channel can trigger, so E1/E2 sweeps have controlled
+# probes with predicted failure modes, not just generic noise:
+#   negation_drop      unstressed negation lost under noise ("can't"→"can")
+#   minimal_pair       single-phoneme keyword confusion under 8 kHz mu-law
+#   number_confusion   spoken digits/quantities misheard
+#   hedge_grading      conditional/hedged answers sit between options (a vs b)
+#   clause_deletion    meaning carried by a subordinate clause noise can delete
+#   sentiment_trap     surface positivity anti-correlated with the keyed answer
+#   two_correct        p09's a=b=2 — extraction must not force-rank the two paths
+#   politeness_mask    deferential wording masking noncompliance
+#   list_speech        enumerations + app names (proper-noun ASR traps)
+#
+# Each item's fragile_probe is a natural utterance whose *predicted* corruption maps
+# to a DIFFERENT option than the clean reading — a controlled a↔c (or b↔c) flip probe.
+#
+# Register: simple spoken English (target population is low-literacy trade workers;
+# also keeps TTS clean). Persona: candidate seeking overseas construction/trade work.
+
+version: en_v1
+date: 2026-07-17
+scorer: src/verdict_cert/scorer.py (pinned; semantics here fitted to its keys)
+extraction_options: [a, b, c, unclear]   # 'unclear' is extraction-level, not scored
+
+items:
+
+  - id: p01
+    construct: aggression_control
+    label: Reaction to public criticism
+    question: >
+      Imagine your supervisor shouts at you in front of the whole team for a mistake
+      that was only partly your fault. What would you do in that moment?
+    options:
+      a:
+        score: 2
+        meaning: Stays calm in the moment; no retaliation; raises the facts privately or later.
+        examples:
+          - "I would stay quiet and finish the work, and later I would explain to him calmly what really happened."
+          - "I wouldn't shout back. In front of everyone I would just listen, and talk to him alone after."
+      b:
+        score: 1
+        meaning: Defends themselves on the spot; visibly upset; argues but does not escalate beyond words.
+        examples:
+          - "I would tell him right there that it was not only my fault. I don't like being blamed in public."
+          - "I would answer back and explain my side immediately, even if he is angry."
+      c:
+        score: 0
+        meaning: Escalates — shouts back, walks off the job, or retaliates.
+        examples:
+          - "If he shouts at me, I will shout back. I don't accept that."
+          - "I would put down my tools and leave the site. Nobody talks to me like that."
+    fragile_probe:
+      utterance: "I wouldn't shout back at him in front of the others."
+      predicted_corruption: "negation drop: 'wouldn't' -> 'would' under noise"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [negation_drop, mixed_proposition]
+
+  - id: p02
+    construct: supervisor_response
+    label: Following instructions under authority
+    question: >
+      Your supervisor tells you to redo a job using his method, but you are sure your
+      own method is faster and just as good. What do you do?
+    options:
+      a:
+        score: 2
+        meaning: Complies with the instruction; may respectfully suggest their method afterwards.
+        examples:
+          - "I will do it his way. He is the supervisor. Maybe later I can show him my way and he can decide."
+          - "First I follow the instruction, then if there is time I explain my idea respectfully."
+      b:
+        score: 1
+        meaning: Pushes back first, complies only after argument; or complies with visible resentment.
+        examples:
+          - "I would first argue and try to convince him my way is better. If he insists, then okay, I do his way."
+          - "I will do it, but I will tell him clearly I think it is wrong and slower."
+      c:
+        score: 0
+        meaning: Refuses, or pretends to comply and secretly does it their own way.
+        examples:
+          - "I would just do it my way. If the result is good, why does the method matter?"
+          - "I would say yes to his face and then do it the faster way when he is gone."
+    fragile_probe:
+      utterance: "Of course sir, I will do it my way when he leaves."
+      predicted_corruption: "minimal pair: 'my way' <-> 'his way' (single phoneme under mu-law); politeness primes compliant reading"
+      clean_maps_to: c
+      corrupted_maps_to: a
+    mechanisms: [minimal_pair, politeness_mask]
+
+  - id: p03
+    construct: self_motivation
+    label: Work ethic when unsupervised
+    question: >
+      One afternoon the supervisor is away and you finish your assigned tasks two
+      hours early. No one is watching you. What do you do with those two hours?
+    options:
+      a:
+        score: 2
+        meaning: Finds useful work unprompted — next task, prep, cleanup, helping others.
+        examples:
+          - "I would keep working. There is always something — cleaning tools, preparing material for tomorrow, helping the others."
+          - "I don't need someone watching me. I would start the next job myself."
+      b:
+        score: 1
+        meaning: Stays available but passive — waits on site, asks someone what to do.
+        examples:
+          - "I would ask another senior worker if there is anything to do, and if not, I wait until the supervisor comes back."
+          - "I would stay at my place ready, in case something comes up."
+      c:
+        score: 0
+        meaning: Stops working because no one is watching — rests, leaves, kills time.
+        examples:
+          - "If the work is finished and nobody is there, I would rest. Why work free hours?"
+          - "I would go back to the room early. Finished is finished."
+    fragile_probe:
+      utterance: "I would keep working even if nobody is watching."
+      predicted_corruption: "keyword loss: 'keep' -> 'stop' misrecognition / clause truncation to 'nobody is watching'"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [hedge_grading, clause_deletion]
+
+  - id: p04
+    construct: endurance
+    label: Handling overtime and physical load
+    question: >
+      It is the end of a ten-hour shift in the heat and you are tired. The supervisor
+      asks the team to stay two more hours to finish an urgent pour. What do you say?
+    options:
+      a:
+        score: 2
+        meaning: Accepts without conditions (within safety); willing when the job needs it.
+        examples:
+          - "I will stay. When the work is urgent, we finish it. That's the job."
+          - "Two more hours is fine, I can do it."
+      b:
+        score: 1
+        meaning: Accepts conditionally — overtime pay, not every day, only if truly urgent.
+        examples:
+          - "If they count it as overtime and pay it, I will stay."
+          - "Sometimes okay, but it should not become every day. If it is really urgent, I stay today."
+      c:
+        score: 0
+        meaning: Refuses; or says they would quit if overtime recurs.
+        examples:
+          - "No, ten hours is ten hours. I can't stay more, I am finished."
+          - "If this company always asks extra hours I will leave the job."
+    fragile_probe:
+      utterance: "I can't stay two more hours today."
+      predicted_corruption: "negation drop: unstressed 'can't' -> 'can' (classic English ASR confusion, amplified at 8 kHz)"
+      clean_maps_to: c
+      corrupted_maps_to: a
+    mechanisms: [negation_drop, hedge_grading]
+
+  - id: p05
+    construct: problem_solving
+    label: Judgement in an unfamiliar situation
+    question: >
+      A machine you are using starts making a strange noise and smoking a little.
+      Your supervisor is not reachable and the job is due today. What do you do?
+    options:
+      a:
+        score: 2
+        meaning: Safe triage — stop the faulty machine, check the obvious causes, continue other work, report as soon as possible.
+        examples:
+          - "I would switch off that machine first, check if something simple is wrong, and keep working with other tools until I can inform the supervisor."
+          - "Safety first — I stop it, then I try to reach someone senior, and I don't lose the day, I continue the parts that don't need that machine."
+      b:
+        score: 1
+        meaning: Stops everything and waits for instructions; no initiative but no harm.
+        examples:
+          - "I would stop and wait until the supervisor answers. I don't touch what I don't know."
+          - "I would just leave it and do nothing until someone tells me."
+      c:
+        score: 0
+        meaning: Keeps forcing the faulty machine, or hides the problem.
+        examples:
+          - "The job is due, so I would keep using it carefully and say nothing. Machines always make noises."
+          - "I would finish the work first and mention the smoke later, or maybe not mention it."
+    fragile_probe:
+      utterance: "I would keep working — after switching off the faulty machine."
+      predicted_corruption: "clause deletion: trailing clause lost under noise leaves 'I would keep working'"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [clause_deletion, mixed_proposition]
+
+  - id: p06
+    construct: cultural_sensitivity
+    label: Working in a multicultural team
+    question: >
+      In the labor camp you share a room with workers from two other countries. Their
+      food smells different, their prayer times differ, and their habits are not
+      yours. How do you handle living like that?
+    options:
+      a:
+        score: 2
+        meaning: Adapts and accommodates; communicates; sees difference as normal.
+        examples:
+          - "I don't mind sharing with them. Everyone has their own way — we talk, we adjust the room rules together."
+          - "It is normal. I have worked with many nationalities, you respect them and they respect you."
+      b:
+        score: 1
+        meaning: Tolerates but withdraws; asks for separate arrangements politely.
+        examples:
+          - "I would not make problems, but I would keep to myself and ask the camp boss if a room change is possible."
+          - "I can manage it, but honestly I would prefer to stay with my own people."
+      c:
+        score: 0
+        meaning: Complains, demands others change, or creates conflict.
+        examples:
+          - "I would tell them to cook that food outside. They should adjust, I can't live like that."
+          - "I mind it a lot. I would complain until they move me or move them."
+    fragile_probe:
+      utterance: "I don't mind sharing the room with them."
+      predicted_corruption: "negation drop: 'don't mind' -> 'mind' flips accommodation into grievance"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [negation_drop, politeness_mask]
+
+  - id: p07
+    construct: homesickness_tolerance
+    label: Coping with separation from family
+    question: >
+      Imagine you have been abroad six months. You miss your family badly, and after
+      the phone calls home it feels worse, not better. What do you do in that period?
+    options:
+      a:
+        score: 2
+        meaning: Healthy coping — routine, purpose, scheduled contact, social support; stays committed.
+        examples:
+          - "I would keep busy with work and the gym, call home on a schedule, and remember why I came — for their future."
+          - "It is hard for everyone. I would spend time with friends in the camp and send money home, that keeps me strong."
+      b:
+        score: 1
+        meaning: Struggles, mood affected, but persists; no plan beyond enduring.
+        examples:
+          - "I would feel very low, maybe some days I can't focus, but I would not give up."
+          - "I just bear it. What else can you do? Slowly it becomes normal."
+      c:
+        score: 0
+        meaning: Would consider abandoning the contract; cannot function when separated.
+        examples:
+          - "Honestly, if it feels that bad I would go home. Family is more important than the contract."
+          - "I don't think I can stay away so long. I would look for a way to come back."
+    fragile_probe:
+      utterance: "When it gets bad I phone home."
+      predicted_corruption: "minimal pair: 'phone home' -> 'go home' under band-pass (b/c-boundary flip on one word)"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [minimal_pair, hedge_grading]
+
+  - id: p08
+    construct: weather_tolerance
+    label: Working in extreme heat
+    question: >
+      The site is outdoors and in summer it reaches forty-five degrees. You would
+      work six days a week in that heat. Can you do that, and how?
+    options:
+      a:
+        score: 2
+        meaning: Can, with concrete practical measures — hydration, pacing, breaks per rules, prior experience.
+        examples:
+          - "Yes, I can work in forty-five degrees. I have done it — you drink water every half hour, cover your head, and take the legal breaks."
+          - "I can do it. I worked two summers in that heat. You learn to pace yourself."
+      b:
+        score: 1
+        meaning: Willing but untested; concerns; would need acclimatization.
+        examples:
+          - "I think I can, but I have not worked in that heat before. I would need some weeks to adjust."
+          - "It worries me a little, but I am willing to try with proper breaks."
+      c:
+        score: 0
+        meaning: Cannot or will not work in that heat.
+        examples:
+          - "No, forty-five is too much. I can't work in that."
+          - "In that heat I would fall sick. I don't think this job is for me."
+    fragile_probe:
+      utterance: "I can't work a full day in forty-five degrees."
+      predicted_corruption: "negation drop ('can't'->'can') AND number confusion ('forty-five'->'four to five')"
+      clean_maps_to: c
+      corrupted_maps_to: a
+    mechanisms: [negation_drop, number_confusion]
+
+  - id: p09
+    construct: digital_literacy
+    label: Using tools and translation apps
+    question: >
+      Abroad you will need a phone for many things — messages from the company,
+      translating instructions, receiving your salary alerts. Tell me how you use
+      your phone today for things like that.
+    options:
+      a:
+        score: 2
+        meaning: Confident independent user — messaging, translation apps, digital payments, finds new apps alone.
+        examples:
+          - "I use WhatsApp every day, Google Translate for English words, and my bank app for sending money. I can learn any app."
+          - "Everything is on my phone — messages, maps, translation, JazzCash. No problem."
+      b:
+        score: 2
+        meaning: Limited but functional — uses the essentials, asks for help to set up, learns with guidance. (Deployed key scores this equal to a — an acceptable second path, not a lesser one.)
+        examples:
+          - "I use WhatsApp and calls. For new apps my son sets them up, then I can use them."
+          - "I know the basic things. If someone shows me one time, I can do it after that."
+      c:
+        score: 0
+        meaning: Cannot use a smartphone for these tasks and shows no path to learning; or refuses.
+        examples:
+          - "I only make calls. These apps are not for me, I never learned and I don't want to."
+          - "I don't have a smartphone and I don't trust these things with money."
+    fragile_probe:
+      utterance: "I know WhatsApp, my son showed me."
+      predicted_corruption: "proper-noun trap: 'I know WhatsApp' -> 'I know what's up' (content deletion), leaving no evidence of app use"
+      clean_maps_to: b
+      corrupted_maps_to: unclear
+    mechanisms: [two_correct, list_speech]
+    notes: >
+      S3 analysis should compute error correlation at BOTH the option level (a vs b
+      splits are extraction disagreements) and the score level (a/b agree at 2 pts).
+      Families disagreeing on a-vs-b here is signal about extraction style, not scoring error.
+
+  - id: p10
+    construct: integrity
+    label: Honesty when money is found
+    question: >
+      Cleaning up after a shift, you find a wallet with about two hundred riyals and
+      no name on it, and nobody saw you pick it up. What do you do with it?
+    options:
+      a:
+        score: 2
+        meaning: Reports/hands it in immediately (supervisor, security, camp office).
+        examples:
+          - "I would give it to the supervisor or the security office the same day. Someone will come asking for it."
+          - "Straight to the site office. It is not my money."
+      b:
+        score: 1
+        meaning: Tries to find the owner informally; holds it meanwhile; imperfect process, honest intent.
+        examples:
+          - "I would keep it with me safely and ask the workers around who lost a wallet."
+          - "I would ask in the camp group first. If nobody claims it, then I hand it to the office."
+      c:
+        score: 0
+        meaning: Keeps it, splits it, or conceals the find. (DISQUALIFYING — hard block per deployed scorer.)
+        examples:
+          - "Nobody saw me, no name on it — that is my luck that day."
+          - "I would keep it quiet. Two hundred riyals is two hundred riyals."
+    fragile_probe:
+      utterance: "I would give it in at the office."
+      predicted_corruption: "voicing minimal pair under mu-law: 'give it' -> 'keep it'"
+      clean_maps_to: a
+      corrupted_maps_to: c
+    mechanisms: [minimal_pair]
+    notes: >
+      Highest-stakes item in the instrument: E0 shows p10 is 100% pivotal — a single
+      flip here alone changes the verdict to 'blocked'. The probe is deliberately a
+      one-phoneme (voicing) confusion: the paper's vivid example of a telephony
+      artifact hard-blocking a worker. Expect the certificate to re-ask this item
+      most often (reask_ranking should rank p10 first whenever its set is not a singleton).
+
+  - id: p11
+    construct: salary_realism
+    label: Realistic about pay and terms
+    question: >
+      An agent tells you: four thousand riyals a month, easy work, food and room
+      free, and he can arrange it if you sign quickly. What is your reaction to
+      that offer?
+    options:
+      a:
+        score: 1
+        meaning: Optimistic-trusting — believes it, excited, ready to go; motivated but credulous.
+        examples:
+          - "That sounds very good. If he can arrange it, I am ready to sign — this is the chance I was waiting for."
+          - "Four thousand with free food? Excellent. I would tell him yes."
+      b:
+        score: 0
+        meaning: Unrealistic/entitled — inflates it further, demands more, no sense of real wages or costs. (Worst.)
+        examples:
+          - "Four thousand is low for me, I would ask him for six thousand at least, plus a car."
+          - "I would sign anything today. Salary doesn't matter, once I am there I will find something better."
+      c:
+        score: 2
+        meaning: Realistic-skeptical — questions the figure against typical wages, asks about deductions, contract in writing, agent fees. (Best — reverse-keyed.)
+        examples:
+          - "Nobody pays four thousand for helper work — real salary is maybe twelve to fifteen hundred. I would ask to see the contract and what is deducted."
+          - "First I check: is it on the contract in writing? What about the agent's fee, the flights, the medical? Quick signing is how people get cheated."
+    fragile_probe:
+      utterance: "Nobody pays four thousand for this work — I would ask for the written contract first."
+      predicted_corruption: "sentiment trap + number confusion: skeptical framing misread as complaint/demand ('ask for four thousand') -> maps to b"
+      clean_maps_to: c
+      corrupted_maps_to: b
+    mechanisms: [sentiment_trap, number_confusion]
+    notes: >
+      Reverse-keyed by the deployed scorer (c=2, a=1, b=0) — semantics here are
+      fitted to that key. Deliberate dissociation between surface positivity and
+      keyed correctness: extraction that pattern-matches enthusiasm will misrank
+      a over c. Predicted judge/evaluator disagreement magnet — the S3 table's most
+      informative row.

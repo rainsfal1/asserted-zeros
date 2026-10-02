@@ -1,0 +1,31 @@
+{
+ "Q4": {
+  "breaches_marginal": 12,
+  "breaches_training_conditional": 1,
+  "n_cells_checked": 850,
+  "surviving": [
+   {
+    "stratum": "snr_m5",
+    "k": 1,
+    "alpha_i": 0.02,
+    "realized": 0.07758620689655173,
+    "tc_bound": 0.0402
+   }
+  ],
+  "inflation": {
+   "0.01": 2.55,
+   "0.02": 2.01,
+   "0.05": 1.54,
+   "0.1": 1.42
+  }
+ },
+ "Q5": {
+  "n_matched": 91,
+  "resolution": 0.0086,
+  "n_beyond_one_session": 72,
+  "median_abs_diff": 0.0517,
+  "conformal_lower": 54,
+  "confidence_lower": 22,
+  "tied": 15
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "tag": "evaluator",
+ "transport": "vllm-offline",
+ "strata": {
+  "decile": {
+   "n": 300,
+   "V2_mass_ratio": {
+    "median": 1.0000000697552687,
+    "min": 0.9842072869899886,
+    "max": 1.0279420002365909,
+    "p99_abs_dev": 0.012852699203211304
+   },
+   "V3_score_ratio": {
+    "within_factor_2": 1.0,
+    "median": 1.0000000915950462,
+    "p05": 0.7788461228534547,
+    "p95": 1.4549912092147257
+   },
+   "V4_exact_zeros": 0,
+   "V1_candidate_miss_mass": {
+    "max": 6.4071962484351866e-12,
+    "median": 2.2045346259917172e-13
+   }
+  },
+  "lowmass": {
+   "n": 47,
+   "V2_mass_ratio": {
+    "median": 1.0002185543346327,
+    "min": 0.9031832338785931,
+    "max": 1.1596223775685244,
+    "p99_abs_dev": 0.15962237756852438
+   },
+   "V3_score_ratio": {
+    "within_factor_2": 1.0,
+    "median": 0.9999999933249594,
+    "p05": 0.779226992716216,
+    "p95": 1.1929040390206436
+   },
+   "V4_exact_zeros": 0,
+   "V1_candidate_miss_mass": {
+    "max": 5.4335699702931075e-12,
+    "median": 1.044508575904327e-13
+   }
+  }
+ },
+ "verdict": {
+  "V1_held": true,
+  "V2_held": true,
+  "V2_falsified": false,
+  "V3_held": true,
+  "V4_held": true
+ }
+}

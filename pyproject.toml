@@ -1,0 +1,41 @@
+[project]
+name = "verdict-cert"
+version = "0.1.0"
+description = "Runtime verdict-referenced fidelity certification for AI-administered assessment"
+readme = "README.md"
+requires-python = ">=3.11"
+# Core (cross-platform) dependencies only — the M0 certificate is pure-stdlib, so
+# these cover only the download tooling and config. The GPU/serving stack lives in
+# requirements-gpu.txt (Linux + CUDA only, validated on-server); keeping it out of
+# the locked project deps is what lets `uv sync` + the M0 tests run on any machine.
+dependencies = [
+    "huggingface-hub>=0.34",
+    "hf-transfer>=0.1.9",
+    "pyyaml>=6.0",
+    "openai>=1.40",  # extraction client (pure-Python; talks to any OpenAI-compatible endpoint)
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+# Presentation playground (local web demo over the proven core). Server-only extra;
+# kept out of the cross-platform core deps. Install with: uv sync --group playground
+# NOTE: optional dependency groups for tooling outside this artifact
+playground = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "httpx>=0.27"]
+# Progress-deck generator (scripts/build_deck.py). Diagrams additionally need
+# `firefox` on PATH; without it the deck builds minus the two graph images.
+deck = ["python-pptx>=1.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/verdict_cert"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests", "scripts"]

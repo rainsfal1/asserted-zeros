@@ -1,0 +1,348 @@
+{
+ "Q1": {
+  "held": true,
+  "non_monotone_strata": 0,
+  "ends_ok": true,
+  "rows": [
+   {
+    "stratum": "tel",
+    "sigma_required": {
+     "1": 0.01,
+     "2": 0.02,
+     "3": 0.03,
+     "5": 0.1,
+     "10": 0.5
+    },
+    "monotone": true
+   },
+   {
+    "stratum": "snr0",
+    "sigma_required": {
+     "1": 0.1,
+     "2": 0.2,
+     "3": 0.45,
+     "5": 0.75,
+     "10": 2.0
+    },
+    "monotone": true
+   },
+   {
+    "stratum": "snr_m5",
+    "sigma_required": {
+     "1": 0.15,
+     "2": 0.4,
+     "3": 0.9,
+     "5": 1.5,
+     "10": 4.0
+    },
+    "monotone": true
+   },
+   {
+    "stratum": "snr_m10",
+    "sigma_required": {
+     "1": 0.3,
+     "2": 0.8,
+     "3": 1.2,
+     "5": 2.0,
+     "10": 4.0
+    },
+    "monotone": true
+   },
+   {
+    "stratum": "mixed",
+    "sigma_required": {
+     "1": 0.15,
+     "2": 0.4,
+     "3": 0.6,
+     "5": 1.5,
+     "10": 3.0
+    },
+    "monotone": true
+   }
+  ]
+ },
+ "Q2": {
+  "held": true,
+  "inverted_at_k": [],
+  "required_alpha": {
+   "tel": {
+    "1": 0.01,
+    "2": 0.01,
+    "3": 0.01,
+    "5": 0.02,
+    "10": 0.05
+   },
+   "snr0": {
+    "1": 0.1,
+    "2": 0.1,
+    "3": 0.15,
+    "5": 0.15,
+    "10": 0.2
+   },
+   "snr_m5": {
+    "1": 0.15,
+    "2": 0.2,
+    "3": 0.3,
+    "5": 0.3,
+    "10": 0.4
+   },
+   "snr_m10": {
+    "1": 0.3,
+    "2": 0.4,
+    "3": 0.4,
+    "5": 0.4,
+    "10": 0.4
+   }
+  },
+  "epsilon_mean": {
+   "tel": 0.07586206896551724,
+   "snr0": 0.19741379310344825,
+   "snr_m5": 0.32068965517241377,
+   "snr_m10": 0.4672413793103448,
+   "mixed": 0.2560344827586207
+  }
+ },
+ "Q3": {
+  "held": true,
+  "cells": [
+   {
+    "stratum": "tel",
+    "k": 1,
+    "alpha_i": 0.02,
+    "sigma": 0.02,
+    "release": 0.7414,
+    "wrong_release": 0.019
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "alpha_i": 0.05,
+    "sigma": 0.05,
+    "release": 0.7345,
+    "wrong_release": 0.0207
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "alpha_i": 0.1,
+    "sigma": 0.1,
+    "release": 0.8483,
+    "wrong_release": 0.0379
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "alpha_i": 0.01,
+    "sigma": 0.02,
+    "release": 0.6914,
+    "wrong_release": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "alpha_i": 0.02,
+    "sigma": 0.04,
+    "release": 0.731,
+    "wrong_release": 0.0034
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "alpha_i": 0.05,
+    "sigma": 0.1,
+    "release": 0.8621,
+    "wrong_release": 0.0069
+   },
+   {
+    "stratum": "tel",
+    "k": 3,
+    "alpha_i": 0.01,
+    "sigma": 0.03,
+    "release": 0.5414,
+    "wrong_release": 0.0069
+   },
+   {
+    "stratum": "tel",
+    "k": 3,
+    "alpha_i": 0.02,
+    "sigma": 0.06,
+    "release": 0.5879,
+    "wrong_release": 0.0103
+   },
+   {
+    "stratum": "tel",
+    "k": 5,
+    "alpha_i": 0.02,
+    "sigma": 0.1,
+    "release": 0.5121,
+    "wrong_release": 0.0034
+   },
+   {
+    "stratum": "snr0",
+    "k": 1,
+    "alpha_i": 0.1,
+    "sigma": 0.1,
+    "release": 0.5707,
+    "wrong_release": 0.0983
+   }
+  ],
+  "n_cells": 10
+ },
+ "Q4": {
+  "held": false,
+  "n_breaches": 12,
+  "examples": [
+   {
+    "stratum": "tel",
+    "k": 1,
+    "subset": 3,
+    "alpha_i": 0.01,
+    "sigma": 0.01,
+    "realized": 0.034482758620689655
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "subset": 4,
+    "alpha_i": 0.02,
+    "sigma": 0.02,
+    "realized": 0.06896551724137931
+   },
+   {
+    "stratum": "snr0",
+    "k": 1,
+    "subset": 2,
+    "alpha_i": 0.1,
+    "sigma": 0.1,
+    "realized": 0.15517241379310345
+   },
+   {
+    "stratum": "snr0",
+    "k": 1,
+    "subset": 4,
+    "alpha_i": 0.15,
+    "sigma": 0.15,
+    "realized": 0.23275862068965517
+   },
+   {
+    "stratum": "snr_m5",
+    "k": 1,
+    "subset": 1,
+    "alpha_i": 0.15,
+    "sigma": 0.15,
+    "realized": 0.22413793103448276
+   },
+   {
+    "stratum": "snr_m5",
+    "k": 1,
+    "subset": 3,
+    "alpha_i": 0.02,
+    "sigma": 0.02,
+    "realized": 0.07758620689655173
+   },
+   {
+    "stratum": "snr_m5",
+    "k": 1,
+    "subset": 3,
+    "alpha_i": 0.05,
+    "sigma": 0.05,
+    "realized": 0.09482758620689655
+   },
+   {
+    "stratum": "snr_m5",
+    "k": 1,
+    "subset": 3,
+    "alpha_i": 0.1,
+    "sigma": 0.1,
+    "realized": 0.16379310344827586
+   }
+  ]
+ },
+ "Q5": {
+  "held": false,
+  "n_matched": 91,
+  "n_beyond_20pct": 68,
+  "examples": [
+   {
+    "stratum": "tel",
+    "k": 1,
+    "target": 0.6,
+    "conformal": 0.0172,
+    "confidence": 0.0259,
+    "rel_diff": 0.333
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "target": 0.7,
+    "conformal": 0.0,
+    "confidence": 0.0603,
+    "rel_diff": 1.0
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "target": 0.8,
+    "conformal": 0.0086,
+    "confidence": 0.0086,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 1,
+    "target": 0.9,
+    "conformal": 0.0,
+    "confidence": 0.0,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "target": 0.5,
+    "conformal": 0.0,
+    "confidence": 0.0,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "target": 0.6,
+    "conformal": 0.0,
+    "confidence": 0.0086,
+    "rel_diff": 1.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "target": 0.7,
+    "conformal": 0.0086,
+    "confidence": 0.0086,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "target": 0.8,
+    "conformal": 0.0,
+    "confidence": 0.0,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 2,
+    "target": 0.9,
+    "conformal": 0.0,
+    "confidence": 0.0,
+    "rel_diff": 0.0
+   },
+   {
+    "stratum": "tel",
+    "k": 3,
+    "target": 0.1,
+    "conformal": 0.0172,
+    "confidence": 0.0,
+    "rel_diff": null
+   }
+  ]
+ }
+}

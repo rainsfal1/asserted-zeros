@@ -1,0 +1,23 @@
+{
+ "corpora": {
+  "s3": {
+   "n": 660,
+   "zeros": 598,
+   "zero_share": 0.906060606060606,
+   "alpha_crossover": 0.096,
+   "threshold_at_alpha_0.10": 0.0
+  },
+  "m3": {
+   "n": 1584,
+   "zeros": 1421,
+   "zero_share": 0.8970959595959596,
+   "alpha_crossover": 0.104,
+   "threshold_at_alpha_0.10": 9.99999999995449e-06
+  }
+ },
+ "indicator_band_tau_1e-2_vs_0.5": {
+  "records": 3498,
+  "in_band": 55,
+  "share": 0.015723270440251572
+ }
+}

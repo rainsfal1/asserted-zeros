@@ -1,0 +1,170 @@
+{
+ "alpha": 0.1,
+ "tau": 0.01,
+ "pass_mark": 1,
+ "n_cal": 116,
+ "n_test": 116,
+ "items": [
+  {
+   "item": "1",
+   "cal_error": 0.0,
+   "measured": {
+    "threshold": 3.224189304429359e-08,
+    "released": 104,
+    "wrong": 0,
+    "release_rate": 0.896551724137931
+   },
+   "truncated": {
+    "threshold": 0.0,
+    "released": 115,
+    "wrong": 2,
+    "release_rate": 0.9913793103448276
+   }
+  },
+  {
+   "item": "2",
+   "cal_error": 0.0,
+   "measured": {
+    "threshold": 5.4222173169193866e-06,
+    "released": 107,
+    "wrong": 0,
+    "release_rate": 0.9224137931034483
+   },
+   "truncated": {
+    "threshold": 0.0,
+    "released": 114,
+    "wrong": 1,
+    "release_rate": 0.9827586206896551
+   }
+  },
+  {
+   "item": "7",
+   "cal_error": 0.008620689655172414,
+   "measured": {
+    "threshold": 0.00026119025639237403,
+    "released": 100,
+    "wrong": 3,
+    "release_rate": 0.8620689655172413
+   },
+   "truncated": {
+    "threshold": 0.0,
+    "released": 114,
+    "wrong": 4,
+    "release_rate": 0.9827586206896551
+   }
+  },
+  {
+   "item": "8",
+   "cal_error": 0.008620689655172414,
+   "measured": {
+    "threshold": 1.3709581266896365e-06,
+    "released": 105,
+    "wrong": 0,
+    "release_rate": 0.9051724137931034
+   },
+   "truncated": {
+    "threshold": 0.0,
+    "released": 116,
+    "wrong": 1,
+    "release_rate": 1.0
+   }
+  },
+  {
+   "item": "13",
+   "cal_error": 0.0603448275862069,
+   "measured": {
+    "threshold": 0.014063629515208786,
+    "released": 110,
+    "wrong": 6,
+    "release_rate": 0.9482758620689655
+   },
+   "truncated": {
+    "threshold": 0.014063629515208786,
+    "released": 110,
+    "wrong": 6,
+    "release_rate": 0.9482758620689655
+   }
+  },
+  {
+   "item": "4",
+   "cal_error": 0.06896551724137931,
+   "measured": {
+    "threshold": 0.01798620605432588,
+    "released": 115,
+    "wrong": 9,
+    "release_rate": 0.9913793103448276
+   },
+   "truncated": {
+    "threshold": 0.01798620605432588,
+    "released": 115,
+    "wrong": 9,
+    "release_rate": 0.9913793103448276
+   }
+  },
+  {
+   "item": "5",
+   "cal_error": 0.06896551724137931,
+   "measured": {
+    "threshold": 0.048614534393271236,
+    "released": 115,
+    "wrong": 7,
+    "release_rate": 0.9913793103448276
+   },
+   "truncated": {
+    "threshold": 0.048614534393271236,
+    "released": 115,
+    "wrong": 7,
+    "release_rate": 0.9913793103448276
+   }
+  },
+  {
+   "item": "6",
+   "cal_error": 0.06896551724137931,
+   "measured": {
+    "threshold": 0.017986213252023764,
+    "released": 103,
+    "wrong": 14,
+    "release_rate": 0.8879310344827587
+   },
+   "truncated": {
+    "threshold": 0.017986213252023764,
+    "released": 103,
+    "wrong": 14,
+    "release_rate": 0.8879310344827587
+   }
+  },
+  {
+   "item": "20",
+   "cal_error": 0.15517241379310345,
+   "measured": {
+    "threshold": 0.9995399945936961,
+    "released": 81,
+    "wrong": 13,
+    "release_rate": 0.6982758620689655
+   },
+   "truncated": {
+    "threshold": 1.0,
+    "released": 0,
+    "wrong": 0,
+    "release_rate": 0.0
+   }
+  },
+  {
+   "item": "3",
+   "cal_error": 0.1724137931034483,
+   "measured": {
+    "threshold": 0.9986576592069134,
+    "released": 34,
+    "wrong": 5,
+    "release_rate": 0.29310344827586204
+   },
+   "truncated": {
+    "threshold": 1.0,
+    "released": 0,
+    "wrong": 0,
+    "release_rate": 0.0
+   }
+  }
+ ],
+ "note": "post-hoc controlled simulation; not pre-registered"
+}

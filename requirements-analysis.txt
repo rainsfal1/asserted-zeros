@@ -1,0 +1,12 @@
+# CPU-only: everything needed to re-run the analyses in this supplement.
+# The committed score caches are already here, so no GPU and no model serving
+# is required to reproduce any number or figure in the paper.
+#
+#   pip install -r requirements-analysis.txt
+#   PYTHONPATH=src python paper/workshop/fig_scores.py
+#
+# Versions are the ones the committed figures were produced with. Figures are
+# not byte-reproducible across matplotlib versions; the numbers are, and each
+# figure script asserts them.
+numpy==2.3.5
+matplotlib==3.11.0

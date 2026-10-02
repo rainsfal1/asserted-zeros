@@ -1,0 +1,314 @@
+{
+ "alpha": 0.1,
+ "pass_mark": 1,
+ "n_cal": 116,
+ "n_test": 116,
+ "taus": {
+  "1e-06": {
+   "per_item": {
+    "1": {
+     "threshold": 0.0,
+     "released": 111,
+     "wrong": 0
+    },
+    "13": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "2": {
+     "threshold": 5.4222173169193866e-06,
+     "released": 107,
+     "wrong": 0
+    },
+    "20": {
+     "threshold": 0.9995399945936961,
+     "released": 81,
+     "wrong": 13
+    },
+    "3": {
+     "threshold": 0.9986576592069134,
+     "released": 34,
+     "wrong": 5
+    },
+    "4": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "5": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "6": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "7": {
+     "threshold": 0.00026119025639237403,
+     "released": 100,
+     "wrong": 3
+    },
+    "8": {
+     "threshold": 1.3709581266896365e-06,
+     "released": 105,
+     "wrong": 0
+    }
+   },
+   "cal_zero_share": 0.46293103448275863,
+   "items_changed": [
+    "1"
+   ],
+   "zero_release_items": [],
+   "wrong_total": 57
+  },
+  "5e-06": {
+   "per_item": {
+    "1": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 2
+    },
+    "13": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "2": {
+     "threshold": 5.4222173169193866e-06,
+     "released": 107,
+     "wrong": 0
+    },
+    "20": {
+     "threshold": 0.9995399945936961,
+     "released": 81,
+     "wrong": 13
+    },
+    "3": {
+     "threshold": 0.9986576592069134,
+     "released": 34,
+     "wrong": 5
+    },
+    "4": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "5": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "6": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "7": {
+     "threshold": 0.00026119025639237403,
+     "released": 100,
+     "wrong": 3
+    },
+    "8": {
+     "threshold": 0.0,
+     "released": 109,
+     "wrong": 0
+    }
+   },
+   "cal_zero_share": 0.5310344827586206,
+   "items_changed": [
+    "1",
+    "8"
+   ],
+   "zero_release_items": [],
+   "wrong_total": 59
+  },
+  "1e-04": {
+   "per_item": {
+    "1": {
+     "threshold": 0.0,
+     "released": 115,
+     "wrong": 2
+    },
+    "13": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "2": {
+     "threshold": 0.0,
+     "released": 110,
+     "wrong": 0
+    },
+    "20": {
+     "threshold": 0.9995399945936961,
+     "released": 81,
+     "wrong": 13
+    },
+    "3": {
+     "threshold": 0.9986576592069134,
+     "released": 34,
+     "wrong": 5
+    },
+    "4": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "5": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "6": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "7": {
+     "threshold": 0.00026119025639237403,
+     "released": 100,
+     "wrong": 3
+    },
+    "8": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 1
+    }
+   },
+   "cal_zero_share": 0.7577586206896552,
+   "items_changed": [
+    "1",
+    "2",
+    "8"
+   ],
+   "zero_release_items": [],
+   "wrong_total": 60
+  },
+  "1e-02": {
+   "per_item": {
+    "1": {
+     "threshold": 0.0,
+     "released": 115,
+     "wrong": 2
+    },
+    "13": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "2": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 1
+    },
+    "20": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "3": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "4": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "5": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "6": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "7": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 4
+    },
+    "8": {
+     "threshold": 0.0,
+     "released": 116,
+     "wrong": 1
+    }
+   },
+   "cal_zero_share": 0.9129310344827586,
+   "items_changed": [
+    "1",
+    "2",
+    "20",
+    "3",
+    "7",
+    "8"
+   ],
+   "zero_release_items": [
+    "20",
+    "3"
+   ],
+   "wrong_total": 44
+  }
+ },
+ "measured": {
+  "per_item": {
+   "1": {
+    "threshold": 3.224189304429359e-08,
+    "released": 104,
+    "wrong": 0
+   },
+   "13": {
+    "threshold": 0.014063629515208786,
+    "released": 110,
+    "wrong": 6
+   },
+   "2": {
+    "threshold": 5.4222173169193866e-06,
+    "released": 107,
+    "wrong": 0
+   },
+   "20": {
+    "threshold": 0.9995399945936961,
+    "released": 81,
+    "wrong": 13
+   },
+   "3": {
+    "threshold": 0.9986576592069134,
+    "released": 34,
+    "wrong": 5
+   },
+   "4": {
+    "threshold": 0.01798620605432588,
+    "released": 115,
+    "wrong": 9
+   },
+   "5": {
+    "threshold": 0.048614534393271236,
+    "released": 115,
+    "wrong": 7
+   },
+   "6": {
+    "threshold": 0.017986213252023764,
+    "released": 103,
+    "wrong": 14
+   },
+   "7": {
+    "threshold": 0.00026119025639237403,
+    "released": 100,
+    "wrong": 3
+   },
+   "8": {
+    "threshold": 1.3709581266896365e-06,
+    "released": 105,
+    "wrong": 0
+   }
+  },
+  "wrong_total": 57
+ }
+}

@@ -1,0 +1,343 @@
+{
+ "base": {
+  "n_cal": 116,
+  "n_test": 116,
+  "items": {
+   "1": {
+    "cal_error": 0.0,
+    "measured": {
+     "threshold": 3.224189304429359e-08,
+     "released": 104,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 115,
+     "wrong": 2
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "13": {
+    "cal_error": 0.0603448275862069,
+    "measured": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "truncated": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "2": {
+    "cal_error": 0.0,
+    "measured": {
+     "threshold": 5.4222173169193866e-06,
+     "released": 107,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 1
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "20": {
+    "cal_error": 0.15517241379310345,
+    "measured": {
+     "threshold": 0.9995399945936961,
+     "released": 81,
+     "wrong": 13
+    },
+    "truncated": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "inert": false,
+    "zero_release": true
+   },
+   "3": {
+    "cal_error": 0.1724137931034483,
+    "measured": {
+     "threshold": 0.9986576592069134,
+     "released": 34,
+     "wrong": 5
+    },
+    "truncated": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "inert": false,
+    "zero_release": true
+   },
+   "4": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "truncated": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "5": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "truncated": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "6": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "truncated": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "7": {
+    "cal_error": 0.008620689655172414,
+    "measured": {
+     "threshold": 0.00026119025639237403,
+     "released": 100,
+     "wrong": 3
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 4
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "8": {
+    "cal_error": 0.008620689655172414,
+    "measured": {
+     "threshold": 1.3709581266896365e-06,
+     "released": 105,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 116,
+     "wrong": 1
+    },
+    "inert": false,
+    "zero_release": false
+   }
+  }
+ },
+ "fresh": {
+  "n_cal": 116,
+  "n_test": 116,
+  "items": {
+   "1": {
+    "cal_error": 0.0,
+    "measured": {
+     "threshold": 3.224189304429359e-08,
+     "released": 103,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 115,
+     "wrong": 2
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "13": {
+    "cal_error": 0.0603448275862069,
+    "measured": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "truncated": {
+     "threshold": 0.014063629515208786,
+     "released": 110,
+     "wrong": 6
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "2": {
+    "cal_error": 0.0,
+    "measured": {
+     "threshold": 5.4222173169193866e-06,
+     "released": 107,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 1
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "20": {
+    "cal_error": 0.15517241379310345,
+    "measured": {
+     "threshold": 0.9995399945936961,
+     "released": 81,
+     "wrong": 13
+    },
+    "truncated": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "inert": false,
+    "zero_release": true
+   },
+   "3": {
+    "cal_error": 0.1724137931034483,
+    "measured": {
+     "threshold": 0.9986576592069134,
+     "released": 34,
+     "wrong": 5
+    },
+    "truncated": {
+     "threshold": 1.0,
+     "released": 0,
+     "wrong": 0
+    },
+    "inert": false,
+    "zero_release": true
+   },
+   "4": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "truncated": {
+     "threshold": 0.01798620605432588,
+     "released": 115,
+     "wrong": 9
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "5": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "truncated": {
+     "threshold": 0.048614534393271236,
+     "released": 115,
+     "wrong": 7
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "6": {
+    "cal_error": 0.06896551724137931,
+    "measured": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "truncated": {
+     "threshold": 0.017986213252023764,
+     "released": 103,
+     "wrong": 14
+    },
+    "inert": true,
+    "zero_release": false
+   },
+   "7": {
+    "cal_error": 0.008620689655172414,
+    "measured": {
+     "threshold": 0.00026119025639237403,
+     "released": 100,
+     "wrong": 3
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 114,
+     "wrong": 4
+    },
+    "inert": false,
+    "zero_release": false
+   },
+   "8": {
+    "cal_error": 0.008620689655172414,
+    "measured": {
+     "threshold": 1.3709581266896365e-06,
+     "released": 105,
+     "wrong": 0
+    },
+    "truncated": {
+     "threshold": 0.0,
+     "released": 116,
+     "wrong": 1
+    },
+    "inert": false,
+    "zero_release": false
+   }
+  }
+ },
+ "structure_base": {
+  "inert": [
+   "13",
+   "4",
+   "5",
+   "6"
+  ],
+  "zero_release": [
+   "20",
+   "3"
+  ],
+  "wrong_measured": 57,
+  "wrong_truncated": 44
+ },
+ "structure_fresh": {
+  "inert": [
+   "13",
+   "4",
+   "5",
+   "6"
+  ],
+  "zero_release": [
+   "20",
+   "3"
+  ],
+  "wrong_measured": 57,
+  "wrong_truncated": 44
+ },
+ "V7_held": true
+}
