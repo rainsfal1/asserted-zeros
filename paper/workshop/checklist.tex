@@ -20,7 +20,7 @@
 \item {\bf Limitations}
     \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
     \item[] Answer: \answerYes{}
-    \item[] Justification: \S6 states the training-conditional inflation ($1.4$--$2.5\times$ nominal $\alpha$ at $n{=}116$), the synthetic-TTS single-domain scope, and that the artifact mechanism is expected to transfer while the constants are not.
+    \item[] Justification: \S6 states the training-conditional inflation ($1.4$--$2.5\times$ nominal $\alpha$ at $n{=}116$), the synthetic-TTS scope over two instruments, and that the mechanism is not specific to speech while the constants do not transfer and prevalence is not shown.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper has no limitation while the answer \answerNo{} means that the paper has limitations, but those are not discussed in the paper. 
@@ -70,7 +70,7 @@
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
     \item[] Answer: \answerYes{}
-    \item[] Justification: An anonymized repository accompanies this submission as supplementary material, containing the extraction harnesses, the committed score caches, the pre-registration documents, and the scripts that regenerate both figures and all three \S5 sweeps from those caches; the underlying short-answer corpus is publicly available.
+    \item[] Justification: Code and data are public at \url{https://github.com/rainsfal1/asserted-zeros}, containing the extraction harnesses, the committed score caches, the pre-registration documents, and the scripts that regenerate both figures and all three \S5 sweeps from those caches; the underlying short-answer corpus is publicly available.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that paper does not include experiments requiring code.
@@ -127,7 +127,7 @@
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The research conforms to the NeurIPS Code of Ethics: the corpora are synthetic speech over a published short-answer dataset (Appendix~\ref{app:corpora}), so no human subjects, no personal data and no capability release are involved.
+    \item[] Justification: The research conforms to the NeurIPS Code of Ethics: the corpora are synthetic speech over a published short-answer dataset and an answer bank authored for an 11-item screener (Appendix~\ref{app:corpora}), so no human subjects, no personal data and no capability release are involved.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the authors have not reviewed the NeurIPS Code of Ethics.
@@ -153,7 +153,7 @@
 \item {\bf Safeguards}
     \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pre-trained language models, image generators, or scraped datasets)?
     \item[] Answer: \answerNA{}
-    \item[] Justification: The paper releases no models and no data with misuse potential; the artifact is measurement code and score caches over a public corpus with synthetic speech.
+    \item[] Justification: The paper releases no models and no data with misuse potential; the artifact is measurement code and score caches over synthetic speech (a published short-answer dataset and an authored answer bank).
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper poses no such risks.
@@ -181,7 +181,7 @@
 \item {\bf New assets}
     \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The re-extracted score caches, the measurement readout and the pre-registration and probe harnesses accompany this submission as supplementary material, documented as described in Appendix~\ref{app:repro}, with enough to regenerate every figure.
+    \item[] Justification: The re-extracted score caches, the measurement readout and the pre-registration and probe harnesses are released in the public repository, documented as described in Appendix~\ref{app:repro}, with enough to regenerate every figure.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not release new assets.
@@ -193,7 +193,7 @@
 \item {\bf Crowdsourcing and research with human subjects}
     \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 
     \item[] Answer: \answerNA{}
-    \item[] Justification: No crowdsourcing and no human subjects: all speech is synthetic TTS over a pre-existing public text corpus.
+    \item[] Justification: No crowdsourcing and no human subjects: all speech is synthetic TTS over a published text corpus and an answer bank the authors wrote.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not involve crowdsourcing nor research with human subjects.

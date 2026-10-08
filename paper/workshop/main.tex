@@ -1,8 +1,9 @@
 % "Who Verifies the Agents?" @ NeurIPS 2026 --- submission mode (double-blind).
 % Content contract: CLAIMS.md --- every number below carries a C<n> tag in a margin
-% comment; a number without one is a defect. Camera-ready later: add [final].
+% comment; a number without one is a defect. Camera-ready: [final] is set; the
+% submitted anonymous version is tagged workshop-submission in git.
 \documentclass{article}
-\usepackage[dblblindworkshop]{neurips_2026}
+\usepackage[dblblindworkshop,final]{neurips_2026}
 \workshoptitle{Who Verifies the Agents? Toward Reliable Agent Development}
 
 \usepackage[utf8]{inputenc}
@@ -26,6 +27,11 @@
 \newcommand{\ct}[1]{\ifclaimtags\hfill{\scriptsize\textcolor{gray}{[#1]}}\fi}
 
 \title{Asserted Zeros: When a Valid Guarantee Certifies\\an Unmeasured Quantity}
+
+\author{Zayyan Ahmed\\
+  School of Electrical Engineering and Computer Science\\
+  National University of Sciences and Technology (NUST), Islamabad, Pakistan\\
+  \texttt{zahmed.bscs23seecs@seecs.edu.pk}}
 
 \begin{document}
 \maketitle
@@ -98,7 +104,7 @@ rounds it away, a token matcher blind to the spelling it arrived under, a top-$k
 window that omits it, or any combination), \emph{renormalization over whatever is
 left}, and a downstream consumer that treats the result as a
 probability. None looks like a defect on its own; each is a reasonable local choice, and our own first repair of the writer re-introduced the same defect at
-six decimals (\S\ref{sec:fix}). Reading the source of three widely used option-scoring interfaces and one API
+six decimals (\S\ref{sec:fix}). We read the source of three widely used option-scoring interfaces and one API
 specification (Appendix~\ref{app:audit}): bounded visibility is documented, and
 restricted-set normalization appears in the harnesses, legitimately there, since
 the candidate set is enumerated by the task rather than lost, which is exactly what our case lacked. We claim nothing about
@@ -109,10 +115,29 @@ quiet: practitioners who adopt conformal methods \emph{because} confidences cann
 be trusted have little reason to audit them afterwards. The immunity covers
 calibration, not measurement.
 
-\textbf{The system.} Two instruments appear below: the artifact of
-\S\ref{sec:artifact} was found on an $11$-item work-readiness screener, and the
-corrected readout and cost analysis run on a $10$-item civics corpus built after
-it. Four words carry the counting: an \emph{item} is one question of the
+\textbf{The system.} Three corpora appear below (Table~\ref{tab:corpora}): the
+artifact of \S\ref{sec:artifact} was found on two renderings of an $11$-item
+work-readiness screener, and the corrected readout and cost analysis run on a
+$10$-item civics corpus built after it, under the corrected readout from the start.
+
+\begin{table}[t]
+\caption{The corpora, in the order the work used them. All speech is
+synthetic and degraded through telephone and noise channels. ``Graded'' counts
+bank records with a scoring key; the screener records were written by the
+original readout and later re-extracted under the corrected one.}\label{tab:corpora}
+\centering\small
+\begin{tabular}{llrrll}
+\toprule
+Corpus & Variation & Items & Options & Graded records & Used in \\
+\midrule
+Screener & channel, noise seed & $11$ & $3$ & $660$ of $770$ & \S\ref{sec:artifact}--\S\ref{sec:probe} \\
+Screener & accented voice & $11$ & $3$ & $1{,}584$ of $1{,}848$ & \S\ref{sec:artifact}--\S\ref{sec:probe} \\
+Civics (Powergrading) & speaker, channel & $10$ & $2$ & $13{,}992$ & \S\ref{sec:fix}--\S\ref{sec:cost} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Four words carry the counting: an \emph{item} is one question of the
 instrument in play; a \emph{record} is one channel rendering of
 one spoken answer to one item; a \emph{session} is one speaker's full set of
 answers; and the \emph{verdict} is the session-level pass/fail the decision rule
@@ -188,34 +213,27 @@ Concretely, we contribute:
     (Appendix~\ref{app:prereg}).
   \item \textbf{What it costs} (\S\ref{sec:cost}): re-imposing the defect on
     measured scores drives the calibrated threshold to an endpoint on every item
-    it reaches ($141/141$ item-splits). Above the step (more than ten of the $n_{\text{cal}}$ calibration grades
-    wrong) the gate releases nothing at all.
-    Below it, on the split reported, it issues certificates at a budget of
-    $0.10$ that measurement does not. At this floor we claim the endpoint, not a
-    direction of release; at the writer's own $5\times10^{-6}$ release rises in
-    $36$ of the $42$ item-splits reached and falls in none. At $\tau = 10^{-2}$ aggregate error \emph{falls} while this happens
-    ($19$ of $20$ resplits), so watching it would read the defect as an
-    improvement; at the writer's own $5\times10^{-6}$ it \emph{rises} in $13$ of
-    $20$ (Appendix~\ref{app:ladder}).
+    it reaches, at every floor we tried. At the writer's own $5\times10^{-6}$,
+    release rises in $36$ of the $42$ item-splits reached and falls in none, and
+    on the split reported, wrong verdicts rise $57 \to 59$ (aggregate error is
+    worse in $13$ of $20$ resplits). At $\tau = 10^{-2}$ it instead
+    \emph{falls} ($19$ of $20$), so watching it would read the defect as an
+    improvement (Appendix~\ref{app:ladder}).
   \item \textbf{A diagnostic another team can apply} (\S\ref{sec:takeaway}):
     five questions about a readout that expose the failure we demonstrate before
     its output reaches a calibration set, including the one our own defect got
     past.
 \end{enumerate}
-We frame this for the workshop's question at the level where we found the
-failure: the \emph{verification of the verifier's evidence}. The system is a judge/evaluator pipeline inside an agentic assessment loop,
-and the failure sits in its verification layer: it went on returning well-formed
-verdicts while the evidence beneath them was fabricated, with nothing in its
-behaviour to separate the two.
+We frame this at the level of the workshop's question, the \emph{verification of the verifier's evidence}: the
+gate went on returning well-formed verdicts while the evidence beneath them was
+fabricated, with nothing in its behaviour to separate the two.
 
 \section{The artifact: asserted zeros}\label{sec:artifact}
-The two corpora here predate the civics corpus: an $11$-item spoken
-\emph{work-readiness} screener (three options per item) rendered as degraded synthetic speech: the same $77$ utterances under two
-channel-and-voice draws, $770$ and $1{,}848$ extraction rows, of which $660$ and
-$1{,}584$ are graded bank records (Appendix~\ref{app:corpora}).
+The two screener corpora of Table~\ref{tab:corpora} predate the civics corpus: the same $77$ spoken utterances under two
+channel-and-voice draws (Appendix~\ref{app:corpora}).
 The original readout took option probabilities from the single decision token's
 top-$20$ log-probabilities, renormalized over the options present, and wrote the
-result to disk rounded to five decimals. Three routes in that pipeline
+result to JSON through Python's \texttt{round(p, 5)}. Three routes in that pipeline
 reach the same record. An option can be absent from the window; present but
 spelled in a way the reader's token matching does not recognize; or counted
 correctly and still fall below $5\times10^{-6}$, which the serializer writes as
@@ -230,7 +248,8 @@ repairing one factor alone change?
 \captionof{table}{Which factor erased each zero first, and which zeros repairing
 that factor alone would remove. The columns count the same $7{,}861$ zeros and
 must not be added: the left one partitions them, the right one cannot, since a
-zero may be removable by several repairs or by none alone.}\label{tab:blame}
+zero may be removable by several repairs or by none alone. ``First'' is pipeline
+order: window, then token matcher, then writer.}\label{tab:blame}
 \begin{center}\small
 \begin{tabular}{lrr}
 \toprule
@@ -267,11 +286,8 @@ $1{,}848$ rows).\ct{C1--C2, C62}
 That is the per-judge picture. The pipeline then combines two separately-prompted
 judges by minimum nonconformity ($s(o) = 1-p(o)$; $\min$ across judges), so
 either judge collapsing to a one-hot on the true option forces the combined
-true-option score to exactly $0.0$. On the graded records this occurs on $\mathbf{90.6\%/89.7\%}$ of
-rows, the spike visible in Figure~\ref{fig:scores}.\ct{C3} The combiner
-amplifies: because either judge collapsing to a one-hot \emph{on the true option}
-is enough to force the combined score to zero, the combined share exceeds either
-judge's own. The two judges are one model family per role, so their errors are correlated
+true-option score to exactly $0.0$. On the graded records this occurs on $90.6\%/89.7\%$ of
+rows, the spike visible in Figure~\ref{fig:scores}.\ct{C3} The combined share therefore exceeds either judge's own. The two judges are one model family per role, so their errors are correlated
 and we do not predict the combined rate from the marginals.\ct{C52}
 
 The calibration consequence is immediate: a split-conformal threshold is the
@@ -298,11 +314,8 @@ And $0.906$ is not a calibration property: at threshold $0$ the true option
 is covered exactly when some judge recorded it at $1.0$, so coverage is the rate
 at which a grader's survivor is the truth. The gate has become a detector of
 grader agreement.\ct{C4} Nor is it usefully described as an implementation bug, though it began as
-one. Here the proxy was a rounded, renormalized window rather than a
-distribution, and everything downstream (thresholds, set sizes, release decisions) inherited that while remaining formally correct. That is the measurement-integrity
-failure of \S\ref{sec:intro}, in its narrow form: a value recorded that was never
-observed. The defect is
-invisible to conformal machinery because it is upstream of it, and invisible to
+one: everything downstream (thresholds, set sizes, release decisions) inherited a rounded, renormalized window while remaining formally correct. The defect is
+invisible to conformal machinery because it is upstream of it, and to
 ordinary testing because, as \S\ref{sec:probe} shows, it changes almost nothing
 a system's behaviour would reveal.
 
@@ -337,17 +350,15 @@ six decimals, returning a measured $4.3\times10^{-7}$ as exactly $0.0$ on disk:
 itself}. A smoke test caught it; a regression test pins it now. That is no coincidence: the writer is the dominant route into the original artifact too, and it
 returned the moment we stopped watching.\ct{C12, C62}
 
-We then built a second, larger corpus \emph{under the measured readout from
-the start}: $350$ synthetic speakers $\times$ $10$ short-answer items $\times$
-$4$ channel conditions ($13{,}992$ records after excluding two unspeakable
-responses, disclosed in the pre-registration), graded over a binary
-\{correct, incorrect\} option domain by the same two blind judges. This is a
-different corpus and option arity than \S\ref{sec:artifact}'s corpora, and the \emph{same-record} before/after lives in Figure~\ref{fig:scores} and the probe
+We then built the civics corpus (Table~\ref{tab:corpora}) \emph{under the measured readout from
+the start}: $350$ synthetic speakers $\times$ $10$ items $\times$
+$4$ channel conditions, less two unspeakable
+responses disclosed in the pre-registration, graded by the same two blind judges. The \emph{same-record} before/after lives in Figure~\ref{fig:scores} and the probe
 of \S\ref{sec:probe}; re-extracting the original corpora under the corrected
 readout leaves $0$ of $660$ (and $0$ of $1{,}584$ on the second corpus) at
 exactly zero, from minima of $4.1\times10^{-10}$ and $5.2\times10^{-10}$. It is the substrate for \S\ref{sec:cost}. Under
 the measured readout: exactly-zero true-option scores number
-$\mathbf{0/13{,}992}$; no option is recorded at exactly $1.0$; per-extractor
+$0/13{,}992$; no option is recorded at exactly $1.0$; per-extractor
 minimum probabilities are $7.8\times10^{-9}$ and $3.9\times10^{-9}$; and the
 unnormalized option mass separates the judges: the first never records below
 $0.99$ (minimum $0.99987$), the second has a real tail ($36$ values below $0.9$,
@@ -375,14 +386,13 @@ $1.000000000$, every one within a factor of two; no score is exactly zero; and
 the spellings the readout aggregates over carry all but $6\times10^{-12}$
 (evaluator) and $2.3\times10^{-7}$ (judge) of the option mass.
 
-Four limits, stated rather than left to be found. The reconstruction runs on the
-same inference engine as the deployment, so it validates the \emph{readout} and not the engine,
-and says nothing about serving stacks we did not use. Second, it shares the
+Four limits. The reconstruction runs on the
+deployment's inference engine, so it validates the \emph{readout}, not the engine
+or serving stacks we did not use. It shares the
 corrected readout's token matcher, so it cannot detect a spelling that matcher misses; that
 class is bounded separately, by enumerating the vocabulary for option spellings
-the matcher rejects. Third, those missed spellings carry more mass on the judge than the evaluator ($2.3\times10^{-7}$ against $6\times10^{-12}$, above the smallest option probabilities we report), so we checked them against what they could
-perturb rather than against a threshold: on no record does that mass reach the
-smallest option's own mass, at worst $13\%$ of it. Fourth, on a deliberately
+the matcher rejects. Those missed spellings carry more mass on the judge than the evaluator ($2.3\times10^{-7}$ against $6\times10^{-12}$, above the smallest option probabilities we report), but on no record does that mass reach the
+smallest option's own, at worst $13\%$ of it. And on a deliberately
 adversarial stratum the evaluator's agreement loosens by an order of magnitude
 (mass ratios $0.90$ to $1.16$) while the judge's does not; we report that stratum
 apart rather than pooling it into the headline.\ct{C60, C61, C72, C73}
@@ -424,6 +434,10 @@ $200$-record sample, an illustration of the dial rather than an operating point,
 substantially in total variation (median TV $\ge 0.05$ on support-1 rows).
 Measured: median TV runs $4.2\times10^{-8}$ to $1.1\times10^{-4}$ across
 corpus, extractor and stratum: falsified by two to six orders of magnitude.\ct{C14}
+The prediction mistook a missing option for missing mass: the options that went
+missing were small (the largest true probability behind any zero is
+$1.84\times10^{-5}$, \S\ref{sec:artifact}), and removing small mass barely moves
+a distribution.
 This falsification is the sharpest result of the four: the artifact barely moved the distribution's \emph{bulk}; what it destroyed
 was the \emph{tail}. The practical
 reading is uncomfortable for downstream users: a system built on the original readout makes the same decisions and reports
@@ -448,7 +462,11 @@ than rounding it, and the rank route removes no zeros when repaired
 calibration scores and already issues wrong verdicts measurement does not
 ($57 \to 59$), while no item loses all its release. The figures below use
 $\tau = 10^{-2}$, a coarser setting that shows the mechanism's shape;
-Appendix~\ref{app:ladder} runs the ladder between them.\ct{C33, C46, C62, C70, C71, C81}
+Appendix~\ref{app:ladder} runs the ladder between them. Two harms follow, and
+they scale differently. The budget dial dies: wherever the floor reaches an item
+the threshold sits on an endpoint, at every floor we tried. And the gate issues
+wrong verdicts measurement withholds: two more at the writer's own floor on the
+split reported, five at $10^{-2}$.\ct{C33, C46, C62, C70, C71, C81}
 
 \textbf{Where truncation acts, it drives the threshold to an endpoint.} A floor rewrites only the scores beneath it, so it misses some items: on four of
 the ten here (calibration error $0.060$--$0.069$; median three across the
@@ -465,7 +483,7 @@ threshold is $0$ exactly when at least $\lceil (n{+}1)(1{-}\alpha_i) \rceil =
 floor has driven every reached score to $0$ or $1$, when both judges miss on at most \emph{ten} of them. The count is the invariant, not the rate: the
 speaker-level split leaves $n_{\text{cal}} \in \{115,116,117\}$ and the order
 statistic allows exactly ten at each, so $10/116 = 0.086$ is this split's
-instance of a threshold that moves slightly with $n$. Below that line, below the \emph{step}, the gate admits every option the
+instance of a threshold that moves slightly with $n$. Below that line (the \emph{step}), the gate admits every option the
 readout zeroed: release rises on all four items concerned, and it rises
 \emph{including on sessions the system gets wrong}. Above it the quantile falls in the mass at one, every set is
 full, and the gate releases nothing at all. Figure~\ref{fig:step} shows both
@@ -478,17 +496,19 @@ claim only that the step lies where the order statistic requires.\ct{C47}
 \caption{Ten single-item decisions at an honest budget ($\Sigma\alpha =
 \alpha_i = 0.10$, telephone stratum, $n_{\text{test}}{=}116$), with the floor re-imposed at $\tau = 10^{-2}$ (coarser than the
 five-decimal writer's own $5\times10^{-6}$; Appendix~\ref{app:ladder} runs the
-ladder), ordered by the item's calibration error rate: the share of calibration records both judges score below $0.5$ for the true option, a close proxy for the share the floor zeroes (which needs both below
-$\tau$; $1.57\%$ of records fall between).\ct{C94} The vertical line is the step,
+ladder), ordered by calibration error rate: the share of calibration records both judges score below $0.5$ for the true option, a close proxy for the share the floor zeroes ($1.57\%$ of records fall between $\tau$ and $0.5$; rates are channel-driven, Appendix~\ref{app:corpora}).\ct{C94} The vertical line is the step,
 at ten wrong of $n_{\text{cal}}$. The floor reaches six of the ten: above the step it releases
 nothing (marked), and on the four below it releases more than measurement does, extra certificates that are not free (right panel). The other four keep
-enough calibration mass above $\tau$ that the quantile never moves, so the two readouts coincide exactly.\ct{C47, C48}}
+enough calibration mass above $\tau$ that the quantile never moves, so the two readouts coincide exactly.
+At the writer's own $5\times10^{-6}$ the floor changes two items, none loses its
+release, and wrong verdicts rise $57 \to 59$ (Appendix~\ref{app:ladder}, Table~\ref{tab:ladder}).\ct{C47, C48}}
 \label{fig:step}
 \end{figure}
 
 \textbf{Certificates the measurement does not issue.} Each is a single-item decision, so a release is a verdict the system issues. Below the step, truncation issues wrong verdicts that measurement does
 not: items~1, 2 and~8 go from $0$ to $2$, $1$ and $1$, item~7 from $3$ to
-$4$.\ct{C48} This is the paper's title under a controlled floor: a guarantee that
+$4$.\ct{C48} At the writer's own $5\times10^{-6}$ item~1 still goes from $0$ to $2$;
+it is the floor's whole cost there. This is the paper's title under a controlled floor: a guarantee that
 remains valid, certifying sessions on probabilities that were never
 observed. Above it, at this floor, the harm runs the other way: items~20 and~3 (pool IDs, not ranks) lose all $81$ and all $34$ of their releases, so a floor coarse enough to reach
 them makes the gate useless on hard items and reckless on easy ones.
@@ -497,55 +517,35 @@ them makes the gate useless on hard items and reckless on easy ones.
 decisions at $\tau = 10^{-2}$, wrong verdicts \emph{fall} under truncation, $57$
 to $44$, because the two high-error items stop releasing at all: a practitioner
 watching aggregate error would see improvement while per-item behaviour became
-arbitrary.\ct{C49} That inversion belongs to the coarse floor, not the defect: at the writer's
-own $5\times10^{-6}$ truncation makes aggregate error \emph{worse} in $13$ of
-$20$ resplits, and the sign flips only once the floor silences the hard items and
-their wrong verdicts leave the total.\ct{C92} The error rates driving the step are themselves channel-driven: the share of calibration records both judges score below $0.5$ runs
-$5.4\%$ to $42.9\%$ across our four conditions, tracking word-error rate
-($1.15$ on those records against $0.094$ elsewhere), so the recording, not the grader alone, sets how much error a gate must tolerate.\ct{C21, C22}
+arbitrary.\ct{C49} The inversion belongs to the coarse floor: at the writer's
+own $5\times10^{-6}$ aggregate error is \emph{worse} in $13$ of
+$20$ resplits; the sign flips only once the floor silences the hard items.\ct{C92}
 
 \textbf{What survives resampling, and what does not.} These counts come from one split, at an $n_{\text{cal}}$ where
 \S\ref{sec:related} puts the training-conditional band at $1.4$--$2.5\times$, so we repeated the measurement over twenty speaker-disjoint resplits
-(seeds $0$--$19$), varying only the seed. They resample one corpus, so they bound split sensitivity rather than
-replicate. Its first third, reserved for fitting a grader, is unused here, leaving
-$n_{\text{cal}}$ and $n_{\text{test}}$ near $116$. At $\tau = 10^{-2}$ three things hold: the threshold lands on an endpoint on
-every item the floor reaches ($141/141$ item-splits); at least one item collapses
-to zero release in $20/20$; and in $20/20$ at least one item below the step
-issues a wrong verdict that measurement does not: the claim this section is named for. At the writer's own $5\times10^{-6}$, two of the three survive: the endpoint result is
-scale-invariant ($27/27$, $42/42$, $58/58$, $141/141$ up the ladder), and in $13/20$ splits (a different $13$ from the aggregate count above) an item below the step still issues a wrong verdict measurement does not,
-release rising in $36$ of the $42$ item-splits the floor reaches and falling
-in none. The collapse
-does not: no item loses all release below $10^{-2}$.\ct{C91, C92, C93}
+of the same corpus (seeds $0$--$19$), which bounds split sensitivity rather than replicating; a third of each split, reserved for fitting a grader, is unused, leaving $n_{\text{cal}}$ and $n_{\text{test}}$ near $116$. At $\tau = 10^{-2}$ the threshold lands on an endpoint on
+every item the floor reaches ($141/141$ item-splits), at least one item collapses
+to zero release in $20/20$, and in $20/20$ at least one item below the step
+issues a wrong verdict that measurement does not. At the writer's own $5\times10^{-6}$ the endpoint result survives ($42/42$) and so does the wrong verdict ($13/20$ splits, a different $13$ from the aggregate count above, release rising in $36$ of $42$ item-splits and falling in none); the collapse does not.\ct{C91, C92, C93}
 
-Two things do not. The constants move: measured wrong verdicts $38$--$72$ across splits,
-truncated $26$--$63$, so $57 \to 44$ is an instance, not an estimate. And truncation below the step does \emph{not} always
-release more than measurement: of the $117$ item-splits where the floor reaches
-an item whose error is at most ten in $n_{\text{cal}}$, release rises in $105$, ties in $6$, falls in $6$. At this floor we therefore claim the endpoint, not a direction of
-release. The step's location is likewise not a clean function of error rate: item
-$20$ at median error $0.134$ collapses in $19/20$ splits, item $3$ at $0.138$ in
-$5/20$. What decides it is where an item's score mass sits relative to $\tau$. The counts are single-\emph{instance} quantities, so we re-ran the measurement on a fresh serving process: every per-item
-threshold is bit-identical, the inert and zero-release sets unchanged, one
-release count moving by one.\ct{C54, C55, C56, C57, C58, C59, C79}
+Three things do not hold. The constants move (measured wrong verdicts $38$--$72$ across splits,
+truncated $26$--$63$, so $57 \to 44$ is an instance, not an estimate), and at $10^{-2}$ release below the step does not always rise: of the $117$ item-splits where the floor reaches an item below the step it rises in $105$, ties in $6$, falls in $6$, so at that floor we claim the endpoint, not a direction. Nor is the step's location a clean function of error rate: what decides it is where an item's score mass sits relative to $\tau$ (item $20$ at median error $0.134$ collapses in $19/20$ splits, item $3$ at $0.138$ in $5/20$). A fresh serving process reproduces every per-item threshold bit for bit, the inert and zero-release sets unchanged, one release count moving by one.\ct{C54, C55, C56, C57, C58, C59, C79}
 
-\textbf{And at the deployed operating point, none of this is visible.} There the rule is $k{=}10$ at $\Sigma\alpha \le 0.5$, so $\alpha_i \le 0.05$;
-at $\alpha_i{=}0.01$ the order statistic $\lceil 115.83 \rceil = 116 = n$ is the
-sample maximum for \emph{any} score distribution, moving interior as $\alpha_i$
-rises. On the mixed-condition stream
+\textbf{And at the deployed operating point, none of this is visible.} There the rule is $k{=}10$ at $\Sigma\alpha \le 0.5$, so $\alpha_i \le 0.05$,
+and at $\alpha_i{=}0.01$ the order statistic $\lceil 115.83 \rceil = 116 = n$ is the
+sample maximum for \emph{any} score distribution. On the mixed-condition stream
 the system actually ran, nothing releases with or without the artifact, at any $\tau$ and every
-registered budget. That invisibility
-is a property of the deployed \emph{stream}, not of the budget alone: on the telephone stratum at the same operating point, $32$ of $116$ sessions
-release under
-measurement and none under the floor: there, the artifact would have been a visible collapse. \ct{C50}
+registered budget. That is the stream's doing, not the budget's alone: on the telephone stratum at the same operating point, $32$ of $116$ sessions
+release under measurement and none under the floor, a visible collapse.\ct{C50}
 
 \section{Limitations and related work}\label{sec:related}
 \textbf{Limitations.} At calibration $n{=}116$ a single split's realized rates
 are measurements, not tests of the guarantee. Miscoverage conditional on one
 calibration draw is Beta-distributed in $n$ and the order statistic alone
 \citep{vovk2012conditional}, with a $95$th percentile at $2.5\times$, $2.0\times$ and $1.4\times$ nominal
-for $\alpha = 0.01$, $0.02$, $0.10$: twice nominal is an ordinary draw here, a property of the calibration size, not of our scores, and one to quote as a
-band.\ct{C29} 
-Our corpus is synthetic-TTS speech over one assessment domain with one
-model family per seat, and the constants do not carry beyond it
+for $\alpha = 0.01$, $0.02$, $0.10$: twice nominal is an ordinary draw at this $n$, not a property of our scores, and one to quote as a band.\ct{C29} 
+Our corpora are synthetic-TTS speech over two assessment instruments with one
+model family per seat, and the constants do not carry beyond them
 (Appendix~\ref{app:repro} records how each is checked). The mechanism (a probability recorded through a representation that cannot
 hold it, renormalized, then consumed as a calibration score) is not specific to
 speech or assessment.\ct{C30} Appendix~\ref{app:audit} cuts the other way: what we found elsewhere was not what was causal here (repairing the window removes not one zero), and the mechanism behind most of our own zeros appeared in neither system that writes a
@@ -564,9 +564,7 @@ A second literature asks whether model confidences can be trusted at all:
 networks are overconfident \citep{guo2017calibration}, language models carry
 signal about their own correctness \citep{kadavath2022know}, verbalized
 confidences can beat raw logits \citep{tian2023askcal}, and uncertainty over
-generated text needs semantic equivalence \citep{kuhn2023semantic}. A third studies LLM verifiers themselves, now standard evaluation
-infrastructure \citep{zheng2023judging} with documented biases such as candidate
-order \citep{wang2024unfair}.
+generated text needs semantic equivalence \citep{kuhn2023semantic}. A third studies LLM verifiers themselves and their documented biases \citep{zheng2023judging,wang2024unfair}.
 
 Older fields asked it first. Measurement theory separates the quantity
 intended from the one an instrument delivers; construct validity \citep{cronbach1955construct} is the concern that a well-behaved instrument measures the wrong thing. Coding an absent value as zero is a missing-data mechanism, not at random
@@ -619,7 +617,7 @@ Every quantitative claim in this paper is recorded against the committed artifac
 it came from, and a build-time check re-reads the compiled PDF and requires each value printed
 in the content pages to trace to one of those records; the figures are produced by
 committed scripts that re-derive their headline shares from the artifacts on each
-build. An anonymized code and data release accompanies this submission.
+build. Code and data are released at \url{https://github.com/rainsfal1/asserted-zeros}.
 
 All model serving runs on a single $46$\,GB GPU with one extractor resident at a
 time; the two extraction passes over the binary corpus take under an hour in
@@ -677,7 +675,9 @@ $11$ clean probes) $\times$ $5$ channel levels (telephone band-limiting and addi
 signal-to-noise ratios $+5/0/-5/-10$\,dB) $\times$ $2$ noise seeds $= 770$ rows, of which $660$ are graded bank records. The second: the same
 $77$ utterances $\times$ $8$ accented voices $\times$ $3$ levels (telephone;
 SNR $0/-5$) $= 1{,}848$ rows, $1{,}584$ bank. The binary civics corpus of
-\S\ref{sec:fix} uses $4$ channel draws (telephone; SNR $0/-5/-10$).\ct{C83}
+\S\ref{sec:fix} uses $4$ channel draws (telephone; SNR $0/-5/-10$).\ct{C83} In \S\ref{sec:cost}, the per-item error rates that place an item above or below the step are themselves channel-driven: the share of calibration records both judges score below $0.5$ runs
+$5.4\%$ to $42.9\%$ across our four conditions, tracking word-error rate
+($1.15$ on those records against $0.094$ elsewhere), so the recording, not the grader alone, sets how much error a gate must tolerate.\ct{C21, C22}
 
 \section{The $\tau$-ladder}\label{app:ladder}
 \S\ref{sec:cost}'s figures use $\tau = 10^{-2}$. The same measurement at the
